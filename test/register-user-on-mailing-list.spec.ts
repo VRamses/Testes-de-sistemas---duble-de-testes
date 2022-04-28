@@ -55,5 +55,17 @@ describe('MailingList',() => {
             })
         }).toThrow("E-mail notification not sent")
     })
+
+    /* CASO 4 - TUDO DEU CERTO*/
+    it("Não deve retornar erro algum caso esteja tudo correto",()=>{
+        const spy = jest.spyOn(emailNotificationService,"send")
+        spy.mockReturnValue(true)
+        expect(()=>{
+            registerUserOnMailingList.execute({
+                name: "Usuario 4",
+                email: "usuario4@teste.com"
+            })
+        }).not.toThrow()
+    })
     
 })
